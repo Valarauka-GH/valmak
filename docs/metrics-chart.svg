@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 296" role="img" aria-label="valmak and Enthium v14 compared to Colemak-DH">
+<title>valmak and Enthium v14 compared to Colemak-DH</title>
+<style>
+.bg { fill: #e0d8c8; }
+.v { fill: #a85040; }
+.e { fill: #6e7e8e; }
+.metrics text { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace; fill: #4a4540; }
+.heading { font-size: 14px; }
+.label { font-size: 13px; }
+.value { font-size: 11px; }
+.legend { font-size: 12px; }
+</style>
+<rect class="bg" x="0" y="0" width="580" height="296" rx="6" ry="6"/>
+<g class="metrics">
+<text x="290" y="20" text-anchor="middle" class="heading">Compared to Colemak-DH</text>
+<text x="115" y="57" text-anchor="end" dominant-baseline="middle" class="label">SFBs</text>
+<rect x="125" y="44" width="114.3" height="12" class="v"/>
+<text x="243.3" y="50.0" dominant-baseline="middle" class="value">−29%</text>
+<rect x="125" y="59" width="158.2" height="12" class="e"/>
+<text x="287.2" y="65.0" dominant-baseline="middle" class="value">−40%</text>
+<text x="115" y="94" text-anchor="end" dominant-baseline="middle" class="label">Redirects</text>
+<rect x="125" y="81" width="289.7" height="12" class="v"/>
+<text x="418.7" y="87.0" dominant-baseline="middle" class="value">−72%</text>
+<rect x="125" y="96" width="288.9" height="12" class="e"/>
+<text x="417.9" y="102.0" dominant-baseline="middle" class="value">−72%</text>
+<text x="115" y="131" text-anchor="end" dominant-baseline="middle" class="label">Stretches</text>
+<rect x="125" y="118" width="365.4" height="12" class="v"/>
+<text x="494.4" y="124.0" dominant-baseline="middle" class="value">−91%</text>
+<rect x="125" y="133" width="378.0" height="12" class="e"/>
+<text x="507.0" y="139.0" dominant-baseline="middle" class="value">−94%</text>
+<text x="115" y="168" text-anchor="end" dominant-baseline="middle" class="label">In-rolls</text>
+<rect x="125" y="155" width="77.2" height="12" class="v"/>
+<text x="206.2" y="161.0" dominant-baseline="middle" class="value">+19%</text>
+<rect x="125" y="170" width="27.9" height="12" class="e"/>
+<text x="156.9" y="176.0" dominant-baseline="middle" class="value">+7%</text>
+<text x="115" y="205" text-anchor="end" dominant-baseline="middle" class="label">Alternation</text>
+<rect x="125" y="192" width="177.5" height="12" class="v"/>
+<text x="306.5" y="198.0" dominant-baseline="middle" class="value">+44%</text>
+<rect x="125" y="207" width="150.8" height="12" class="e"/>
+<text x="279.8" y="213.0" dominant-baseline="middle" class="value">+38%</text>
+<text x="115" y="242" text-anchor="end" dominant-baseline="middle" class="label"><tspan x="115" dy="-0.4em">Pinky-off</tspan><tspan x="115" dy="1.2em">(worse)</tspan></text>
+<rect x="125" y="229" width="104.7" height="12" class="v"/>
+<text x="233.7" y="235.0" dominant-baseline="middle" class="value">+72%</text>
+<rect x="125" y="244" width="400.0" height="12" class="e"/>
+<text x="529.0" y="250.0" dominant-baseline="middle" class="value">+274%</text>
+<rect x="205" y="276" width="11" height="11" class="v"/>
+<text x="220" y="286" class="legend">valmak</text>
+<rect x="281" y="276" width="11" height="11" class="e"/>
+<text x="296" y="286" class="legend">Enthium v14</text>
+</g>
+</svg>

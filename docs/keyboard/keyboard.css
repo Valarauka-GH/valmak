@@ -1,0 +1,152 @@
+/* Keyboard component styles. Pair with keyboard.js.
+ *
+ * Host contract — the host page defines these on :root:
+ *   --paper, --ink, --muted    base palette (theme-dependent)
+ *   --rule                     hover background (theme-dependent)
+ *   --mono                     monospace font stack
+ *
+ * Component-owned vars — declared below; the host CAN override but
+ * doesn't need to redeclare with the same values:
+ *   --color-layer-0..N         layer slot colors (0 = resting key
+ *                              border; 1+ = overlay layers)
+ *   --modifier                 HRM/shift/combo-bar color
+ *
+ * --layer-color is a per-element variable set inline by keyboard.js on
+ * layer-tagged elements (trigger keys, kbd root when active); rules
+ * below read it. */
+
+:root {
+  --color-layer-0: #8a7f6d;  /* muted — base/default key border (theme-invariant) */
+  --color-layer-1: #5a7a72;  /* sage */
+  --color-layer-2: #a13e2a;  /* rust */
+  --color-layer-3: #7a4a6a;  /* plum */
+  --color-layer-4: #5a6a7a;  /* slate */
+  --color-layer-5: #3a6a6a;  /* teal */
+  --color-layer-6: #b8862a;  /* amber */
+  --modifier: #997838;       /* ochre — HRMs, shift keys; independent of layer slots */
+}
+
+:root.theme-dark {
+  --color-layer-1: #92b0a5;
+  --color-layer-2: #c26147;
+  --color-layer-3: #b07a9a;
+  --color-layer-4: #92a2b0;
+  --color-layer-5: #92b0b0;
+  --color-layer-6: #d8aa50;
+  --modifier: #c5a05d;
+}
+
+.kbd {
+  width: 100%;
+  height: auto;
+  max-width: 720px;
+}
+
+/* ─── Controls bar (Modifiers / Compare buttons + the link rows) ──────── */
+
+.kbd-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.kbd-controls button,
+.kbd-controls a {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 0.45rem 0.9rem;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1;
+  text-align: center;
+}
+.kbd-controls button { min-width: 8rem; }
+.kbd-controls a { min-width: 6rem; }
+.kbd-controls button:hover,
+.kbd-controls a:hover {
+  background: var(--rule);
+  text-decoration: none;
+}
+
+.key__cap {
+  fill: var(--paper);
+  stroke: var(--color-layer-0);
+  stroke-width: 1.25;
+  transition: fill 120ms ease;
+}
+
+.key__label {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 400;
+  fill: var(--ink);
+  pointer-events: none;
+}
+
+/* Two categories assign a base color: .key--modifier (ochre, for HRMs +
+   thumb-shifts) and .key--layer (the layer's --color-layer-N, set inline
+   on triggers and combo bars). States layer on top: holdable, held
+   (hover or .key--held), faded (.key--layer-passthrough). */
+
+.key--modifier {
+  cursor: pointer;
+}
+.key--modifier .key__cap {
+  fill: color-mix(in srgb, var(--modifier) 12%, var(--paper));
+  stroke: var(--modifier);
+  stroke-width: 1.25;
+}
+.key--modifier:hover .key__cap,
+.key--modifier.key--held .key__cap {
+  fill: color-mix(in srgb, var(--modifier) 26%, var(--paper));
+  stroke-width: 2;
+}
+
+.key--layer {
+  cursor: pointer;
+}
+.key--layer .key__cap {
+  fill: color-mix(in srgb, var(--layer-color) 12%, var(--paper));
+  stroke: var(--layer-color);
+  stroke-width: 1.25;
+}
+.key--layer:hover .key__cap,
+.key--layer.key--held .key__cap {
+  fill: color-mix(in srgb, var(--layer-color) 26%, var(--paper));
+  stroke-width: 2.25;
+}
+.kbd--layer-active .key--layer-active .key__cap {
+  fill: var(--paper);
+  stroke: var(--layer-color);
+  stroke-width: 1.25;
+}
+
+/* Layer passthrough fades base labels so the active layer reads as a
+   delta against the resting layout. */
+.key--layer-passthrough .key__cap,
+.key--layer-passthrough .key__label {
+  opacity: 0.3;
+}
+
+.combo-bar {
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 120ms ease;
+  fill: var(--modifier);
+}
+.combo-bar:hover {
+  opacity: 1;
+}
+.combo-bar--faded {
+  opacity: 0.18;
+}
+
+@media (max-width: 700px) {
+  .kbd { max-width: 100%; }
+}

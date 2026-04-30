@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>valmak — a thumb-alpha evolution of Colemak-DH</title>
+  <meta name="description" content="A thumb-alpha evolution of Colemak-DH">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="valmak — a thumb-alpha evolution of Colemak-DH">
+  <meta property="og:description" content="A thumb-alpha evolution of Colemak-DH">
+  <meta property="og:url" content="https://valarauka-gh.github.io/valmak">
+
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./keyboard/keyboard.css">
+  <link rel="stylesheet" href="./style.css">
+
+  <script>
+    // Set theme class before render to avoid FOUC.
+    (() => {
+      const stored = localStorage.getItem("theme");
+      const theme = (stored === "dark" || stored === "light")
+        ? stored
+        : matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.classList.add("theme-" + theme);
+    })();
+  </script>
+</head>
+<body>
+  <button id="theme-toggle" type="button" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.25"/>
+      <path d="M 8 1.5 A 6.5 6.5 0 0 0 8 14.5 Z" fill="currentColor"/>
+    </svg>
+  </button>
+  <main>
+
+    <section id="hero" class="wide">
+      <h1>valmak</h1>
+      <p class="tagline">A thumb-alpha evolution of Colemak-DH</p>
+      <div id="kbd-mount"></div>
+    </section>
+
+    <article id="readme-body"></article>
+
+  </main>
+
+  <script type="module">
+    import { mount } from "./keyboard/keyboard.js";
+    import layout from "./keyboard/layout.js";
+    try {
+      mount(document.getElementById("kbd-mount"), layout);
+    } catch (e) {
+      console.error("keyboard mount failed:", e);
+    }
+
+    // README is trusted (built from our own README.md). If you fork
+    // this template to render external markdown, sanitize first.
+    fetch("./readme.html")
+      .then((r) => r.text())
+      .then((html) => {
+        document.getElementById("readme-body").innerHTML = html;
+      })
+      .catch((e) => console.error("readme fetch failed:", e));
+
+    // The inline head script guarantees theme-light or theme-dark is
+    // always set, so the toggle is just a flip.
+    const root = document.documentElement;
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      const next = root.classList.contains("theme-dark") ? "light" : "dark";
+      root.classList.remove("theme-dark", "theme-light");
+      root.classList.add("theme-" + next);
+      localStorage.setItem("theme", next);
+    });
+  </script>
+</body>
+</html>
